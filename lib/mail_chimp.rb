@@ -7,18 +7,7 @@ module MailChimp
 
       config.autoload_paths += %W(#{config.root}/lib)
 
-      def self.activate
-
-          Spree::BaseController.class_eval do
-              helper MailChimpHelper
-          end
-
-          UsersController.send(:include, MailChimpSync::Sync)
-
-          User.class_eval do 
-              attr_accessible :is_mail_list_subscriber
-          end 
-
+      def self.activate 
           AppConfiguration.class_eval do
               preference :mailchimp_double_opt_in, :boolean, :default => false
               preference :mailchimp_send_welcome, :boolean, :default => false
@@ -27,7 +16,6 @@ module MailChimp
               preference :mailchimp_list_id, :string
               preference :mailchimp_api_key, :string
           end
-
       end
     
       config.to_prepare &method(:activate).to_proc
