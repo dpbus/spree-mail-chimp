@@ -1,6 +1,6 @@
 Deface::Override.new(:virtual_path => "spree/layouts/spree_application",
                      :name => "js_and_css_in_head",
-                     :insert_after => "[data-hook='inside_head'], #inside_head[data-hook]",
+                     :insert_bottom => "[data-hook='inside_head'], #inside_head[data-hook]",
                      :text => 
                      %[
                        <%= stylesheet_link_tag 'mail_chimp' %>
