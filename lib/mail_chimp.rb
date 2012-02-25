@@ -1,5 +1,4 @@
 require 'spree_core'
-require 'mail_chimp_hooks'
 require 'mail_chimp_sync'
 require 'hominid'
 
