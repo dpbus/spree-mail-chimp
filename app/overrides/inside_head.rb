@@ -1,4 +1,4 @@
-Deface::Override.new(:virtual_path => "layouts/spree_application",
+Deface::Override.new(:virtual_path => "spree/layouts/spree_application",
                      :name => "js_and_css_in_head",
                      :insert_after => "[data-hook='inside_head'], #inside_head[data-hook]",
                      :text => 

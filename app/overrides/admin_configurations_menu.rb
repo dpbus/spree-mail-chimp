@@ -1,4 +1,4 @@
-Deface::Override.new(:virtual_path => "admin/configurations/index",
+Deface::Override.new(:virtual_path => "spree/admin/configurations/index",
                      :name => "admin_configurations_menu",
                      :insert_after => "[data-hook='admin_configurations_menu'], #admin_configurations_menu[data-hook]",
                      :text =>
