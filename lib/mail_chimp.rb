@@ -5,19 +5,18 @@ require 'hominid'
 module MailChimp
   class Engine < Rails::Engine
 
-      config.autoload_paths += %W(#{config.root}/lib)
+    config.autoload_paths += %W(#{config.root}/lib)
 
-      def self.activate 
-          AppConfiguration.class_eval do
-              preference :mailchimp_double_opt_in, :boolean, :default => false
-              preference :mailchimp_send_welcome, :boolean, :default => false
-              preference :mailchimp_send_notify, :boolean, :default => false
-              preference :mailchimp_merge_vars, :string, :default => ''
-              preference :mailchimp_list_id, :string
-              preference :mailchimp_api_key, :string
-          end
+    def self.activate 
+      Dir.glob(File.join(File.dirname(__FILE__), "../app/**/*_decorator*.rb")) do |c|
+        Rails.configuration.cache_classes ? require(c) : load(c)
       end
-    
-      config.to_prepare &method(:activate).to_proc
+      
+      Dir.glob(File.join(File.dirname(__FILE__), "../../app/overrides/**/*.rb")) do |c|
+         Rails.application.config.cache_classes ? require(c) : load(c)
+      end
+    end
+  
+    config.to_prepare &method(:activate).to_proc
   end
 end
