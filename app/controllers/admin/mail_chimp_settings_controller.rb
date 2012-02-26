@@ -1,4 +1,4 @@
-class Admin::MailChimpSettingsController < Spree::Admin::BaseController
+class Spree::Admin::MailChimpSettingsController < Spree::Admin::BaseController
 
   def update
     Spree::Config.set(params[:preferences])
